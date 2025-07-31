@@ -2,194 +2,268 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Charan's Store - All In One</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charan's Store</title>
   <style>
-    body { font-family: Arial; background: #f9f9f9; margin: 0; padding: 20px; }
-    nav a { margin-right: 15px; text-decoration: none; color: #007bff; }
-    nav { margin-bottom: 20px; }
-    .section { display: none; }
-    .active { display: block; }
-    .product { border: 1px solid #ccc; padding: 10px; margin: 10px; width: 200px; text-align: center; background: #fff; border-radius: 8px; }
-    .products { display: flex; flex-wrap: wrap; }
-    .cart { float: right; font-weight: bold; }
-    #searchInput { margin: 10px 0; padding: 5px; width: 200px; }
-    .payment-section img { border-radius: 10px; border: 1px solid #ccc; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+    .section {
+      display: none;
+      padding: 20px;
+    }
+    .active {
+      display: block;
+    }
+    .product {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 10px;
+      width: 200px;
+      text-align: center;
+      background: #fff;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .cart {
+      margin-top: 20px;
+    }
+    .payment-section img {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    label, input, select {
+      display: block;
+      margin: 5px 0;
+    }
   </style>
 </head>
-<body>
+<body onload="initPage()">
+  <header>
+    <h1>🛍️ Charan's Store</h1>
+    <nav>
+      <a href="#" onclick="showSection('home')">Home</a>
+      <a href="#" onclick="showSection('products')">Products</a>
+      <a href="#" onclick="showSection('cart')">Cart</a>
+      <a href="#" onclick="showSection('payment')">Payment</a>
+    </nav>
+  </header>
 
-  <h1>🛍️ Charan's Store</h1>
-  <div class="cart">🧺 <span id="cartCount">0</span> items - ₹<span id="cartTotal">0</span></div>
-
-  <!-- Navigation -->
-  <nav>
-    <a href="#" onclick="showSection('home')">Home</a>
-    <a href="#" onclick="showSection('products')">Products</a>
-    <a href="#" onclick="showSection('cart')">Cart</a>
-    <a href="#" onclick="showSection('customer')">Customer Details</a>
-    <a href="#" onclick="showSection('payment')">Payment</a>
-    <a href="#" onclick="showSection('contact')">Contact</a>
-  </nav>
-
-  <!-- Home -->
   <div id="home" class="section active">
-    <h2>Welcome to Charan's Store</h2>
-    <p>Shop your favorite items, pay with UPI, and get your order delivered!</p>
+    <h2>Welcome to Charan's Store!</h2>
+    <p>Explore our quality products and pay easily via UPI.</p>
   </div>
 
-  <!-- Products -->
   <div id="products" class="section">
-    <h2>🛒 Products</h2>
     <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Search products..." />
     <div class="products" id="productList">
-      <div class="product" data-name="Product 1" data-price="100">
-        <img src="git1.jpg" width="150"><br>
-        <strong>Product 1</strong><br>₹100<br>
-        <button onclick="addToCart(100)">Add to Cart</button>
+      <div class="product" data-name="Product 1" data-price="750">
+        <img src="git1.jpg" width="150" /><br />
+        <strong>Product 1</strong><br />₹750<br />
+        Size:
+        <select class="sizeSelect">
+          <option value="">Select</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select><br />
+        <button onclick="addToCart(this, 750, 'Product 1')">Add to Cart</button>
       </div>
-      <div class="product" data-name="Product 2" data-price="150">
-        <img src="git2.jpg" width="150"><br>
-        <strong>Product 2</strong><br>₹150<br>
-        <button onclick="addToCart(150)">Add to Cart</button>
+        <div class="product" data-name="Product 2" data-price="750">
+        <img src="git3.jpg" width="150" /><br />
+        <strong>Product 2</strong><br />₹750<br />
+        Size:
+        <select class="sizeSelect">
+          <option value="">Select</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select><br />
+        <button onclick="addToCart(this, 750, 'Product 2')">Add to Cart</button>
+      </div>
+        <div class="product" data-name="Product 3" data-price="750">
+        <img src="git4.jpg" width="150" /><br />
+        <strong>Product 2</strong><br />₹750<br />
+        Size:
+        <select class="sizeSelect">
+          <option value="">Select</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select><br />
+        <button onclick="addToCart(this, 750, 'Product 3')">Add to Cart</button>
+      </div>
+        <div class="product" data-name="Product 4" data-price="750">
+        <img src="git5.jpg" width="150" /><br />
+        <strong>Product 3</strong><br />₹750<br />
+        Size:
+        <select class="sizeSelect">
+          <option value="">Select</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select><br />
+        <button onclick="addToCart(this, 750, 'Product 4')">Add to Cart</button>
+      </div>
+        <div class="product" data-name="Product 5" data-price="750">
+        <img src="git6.jpg" width="150" /><br />
+        <strong>Product 4</strong><br />₹750<br />
+        Size:
+        <select class="sizeSelect">
+          <option value="">Select</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select><br />
+        <button onclick="addToCart(this, 750, 'Product 5')">Add to Cart</button>
+      </div>
+      <div class="product" data-name="Product 6" data-price="500">
+        <img src="git2.jpg" width="150" /><br />
+        <strong>Product 6</strong><br />₹500<br />
+        Size:
+        <select class="sizeSelect">
+          <option value="">Select</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select><br />
+        <button onclick="addToCart(this, 500, 'Product 6')">Add to Cart</button>
       </div>
     </div>
-    <p id="noMatchMessage" style="display:none; color:gray;">No products found.</p>
   </div>
 
-  <!-- Cart -->
   <div id="cart" class="section">
-    <h2>🧺 Your Cart</h2>
-    <p>Items in cart: <span id="cartCountDisplay">0</span></p>
-    <p>Total: ₹<span id="cartTotalDisplay">0</span></p>
+    <h2>Your Cart</h2>
+    <div id="cartItems"></div>
+    <p><strong>Total:</strong> ₹<span id="cartTotal">0</span></p>
+    <p id="deliveryFee"></p>
+    <label for="slot">Select Delivery Slot:</label>
+    <select id="slot">
+      <option>Morning (8-11AM)</option>
+      <option>Afternoon (12-3PM)</option>
+      <option>Evening (4-7PM)</option>
+    </select>
+    <br />
+    <button onclick="showSection('payment')">Proceed to Payment</button>
   </div>
 
-  <!-- Customer Details -->
-  <div id="customer" class="section">
-    <h2>🧑 Customer Details</h2>
-    <form id="customerForm" action="https://formsubmit.co/madeticharanteja19@gmail.com" method="POST" onsubmit="return fillCartDetails()">
-      <label>Full Name:<br><input type="text" name="Customer Name" id="name" required></label><br><br>
-      <label>Phone Number:<br><input type="tel" name="Phone Number" id="phone" required></label><br><br>
-      <label>Address:<br><textarea name="Address" id="address" rows="4" required></textarea></label><br><br>
-      <label>Email:<br><input type="email" name="Email" id="email"></label><br><br>
-      <label>Delivery Slot:<br>
-        <select name="Delivery Slot" id="slot" required>
-          <option value="">Select a slot</option>
-          <option>Morning (9 AM - 12 PM)</option>
-          <option>Afternoon (12 PM - 4 PM)</option>
-          <option>Evening (4 PM - 8 PM)</option>
-        </select>
-      </label><br><br>
-      <input type="hidden" name="Cart Items" id="cartCountForm">
-      <input type="hidden" name="Total Amount" id="cartTotalForm">
-      <button type="submit">Submit Details</button>
-    </form>
-  </div>
-
-  <!-- Payment -->
   <div id="payment" class="section">
-    <h2>💳 UPI Payment</h2>
-    <img id="qrCode" width="250" height="250" alt="QR Code"><br><br>
+    <h2>Scan & Pay</h2>
+    <img id="qrCode" src="qr.jpg" alt="UPI QR Code" width="250" height="250" />
     <p><strong>UPI ID:</strong> <span id="upiIdText">7601017851@naviaxis</span>
       <button onclick="copyUPIID()">📋 Copy</button>
     </p>
+    <a id="upiLink" href="#" target="_blank"><button>Pay via UPI App</button></a>
+    <br /><br />
+    <button onclick="showSection('customer')">I've Paid</button>
   </div>
 
-  <!-- Contact -->
-  <div id="contact" class="section">
-    <h2>📧 Contact Us</h2>
-    <form action="https://formsubmit.co/madeticharanteja19@gmail.com" method="POST">
-      <label>Name:<br><input type="text" name="name" required></label><br><br>
-      <label>Email:<br><input type="email" name="email" required></label><br><br>
-      <label>Message:<br><textarea name="message" rows="5" cols="40" required></textarea></label><br><br>
-      <button type="submit">Send Message</button>
+  <div id="customer" class="section">
+    <h2>Customer Details</h2>
+    <form id="customerForm" onsubmit="storeCustomerDetails(event)">
+      <label>Name: <input type="text" id="name" required /></label>
+      <label>Email: <input type="email" id="email" required /></label>
+      <label>Mobile: <input type="tel" id="mobile" required /></label>
+      <button type="submit">Submit</button>
     </form>
   </div>
 
   <script>
-    let cartCount = parseInt(localStorage.getItem("cartCount")) || 0;
-    let cartTotal = parseInt(localStorage.getItem("cartTotal")) || 0;
-    updateCartDisplay();
-    loadCustomerForm();
+    let cart = [];
+    let cartTotal = 0;
+
+    function initPage() {
+      showSection('home');
+    }
 
     function showSection(id) {
-      document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      if (id === 'payment') generateDynamicQR();
-    }
-
-    function addToCart(price) {
-      cartCount += 1;
-      cartTotal += price;
-      localStorage.setItem("cartCount", cartCount);
-      localStorage.setItem("cartTotal", cartTotal);
-      updateCartDisplay();
-      alert("Item added to cart. Total: ₹" + cartTotal);
-    }
-
-    function updateCartDisplay() {
-      document.getElementById("cartCount").innerText = cartCount;
-      document.getElementById("cartTotal").innerText = cartTotal;
-      document.getElementById("cartCountDisplay").innerText = cartCount;
-      document.getElementById("cartTotalDisplay").innerText = cartTotal;
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
 
     function filterProducts() {
       const input = document.getElementById("searchInput").value.toLowerCase();
       const products = document.querySelectorAll(".product");
-      let found = false;
       products.forEach(p => {
         const name = p.getAttribute("data-name").toLowerCase();
-        if (name.includes(input)) {
-          p.style.display = "block";
-          found = true;
-        } else {
-          p.style.display = "none";
-        }
+        p.style.display = name.includes(input) ? "block" : "none";
       });
-      document.getElementById("noMatchMessage").style.display = found ? "none" : "block";
+    }
+
+    function addToCart(button, amount, productName) {
+      const size = button.parentElement.querySelector(".sizeSelect").value;
+      if (!size) return alert("Please select a size.");
+      cart.push({ name: productName, price: amount, size });
+      cartTotal += amount;
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      let html = "";
+      cart.forEach((item, i) => {
+        html += `<p>${item.name} (Size: ${item.size}) - ₹${item.price}</p>`;
+      });
+      document.getElementById("cartItems").innerHTML = html;
+      document.getElementById("cartTotal").innerText = cartTotal;
+      const deliveryFee = cartTotal < 300 ? 50 : 0;
+      document.getElementById("deliveryFee").innerText = deliveryFee ? `+ ₹50 Delivery charge (for orders below ₹300)` : "Free Delivery";
+      generateDynamicPayment();
+    }
+
+    function generateDynamicPayment() {
+      const upiId = "7601017851@naviaxis";
+      const name = "MADETI CHARAN TEJA";
+      const total = cartTotal + (cartTotal < 300 ? 50 : 0);
+      const url = `https://upi.link/qr?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${total}&cu=INR`;
+      document.getElementById("qrCode").src = url;
+      document.getElementById("upiLink").href = url;
     }
 
     function copyUPIID() {
       const upiId = document.getElementById("upiIdText").innerText;
-      navigator.clipboard.writeText(upiId).then(() => alert("✅ UPI ID copied!"));
+      navigator.clipboard.writeText(upiId).then(() => {
+        alert("✅ UPI ID copied to clipboard!");
+      });
     }
 
-    function generateDynamicQR() {
-      const upiId = "7601017851@naviaxis";
-      const name = "MADETI CHARAN TEJA";
-      const amount = cartTotal;
-      const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
-      const qrApi = `https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=${encodeURIComponent(upiUrl)}`;
-      document.getElementById("qrCode").src = qrApi;
-    }
-
-    function fillCartDetails() {
-      // Save customer form data to localStorage
-      const name = document.getElementById("name").value;
-      const phone = document.getElementById("phone").value;
-      const address = document.getElementById("address").value;
-      const email = document.getElementById("email").value;
-      const slot = document.getElementById("slot").value;
-
-      localStorage.setItem("cust_name", name);
-      localStorage.setItem("cust_phone", phone);
-      localStorage.setItem("cust_address", address);
-      localStorage.setItem("cust_email", email);
-      localStorage.setItem("cust_slot", slot);
-
-      // Set hidden fields for form
-      document.getElementById("cartCountForm").value = cartCount;
-      document.getElementById("cartTotalForm").value = "₹" + cartTotal;
-
-      return true;
-    }
-
-    function loadCustomerForm() {
-      document.getElementById("name").value = localStorage.getItem("cust_name") || "";
-      document.getElementById("phone").value = localStorage.getItem("cust_phone") || "";
-      document.getElementById("address").value = localStorage.getItem("cust_address") || "";
-      document.getElementById("email").value = localStorage.getItem("cust_email") || "";
-      document.getElementById("slot").value = localStorage.getItem("cust_slot") || "";
+    function storeCustomerDetails(e) {
+      e.preventDefault();
+      const customer = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        mobile: document.getElementById("mobile").value,
+        cart,
+        total: cartTotal,
+        deliverySlot: document.getElementById("slot").value,
+        date: new Date().toLocaleString()
+      };
+      localStorage.setItem("charan_customer", JSON.stringify(customer));
+      alert("Thank you! Your order has been placed.");
     }
   </script>
 </body>
